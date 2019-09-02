@@ -65,34 +65,7 @@ server.listen( 3000, function() {
   console.log("Server listening on port 3000.");
 });
 
+
 var chatServer = require('./lib/chat_server');
 chatServer.listen(server);
 
-exports.listen = function( server ) {
-  io = socketio.listen(server); // Socket.IOサーバを始動し、既存のHTTPサーバに相乗りさせる
-  io.set('log level', 1);
-
-  io.sockets.on( 'connection', function (socket) {
-	
-	// ユーザの接続時にゲスト名を割り当てる
-	guestNumber = assignGuestName( socket, guestNumber, nickNames, namesUsed );
-
-	// 接続したユーザを Lobby に入れる
-	joinRoom( socket, 'Lobby' );
-
-	// ユーザのメッセージ、名前変更とルーム作成／変更の要求を処理する
-	handleMessageBroadcasting( socket, nickNames );
-
-	handleNameChangeAttempts( socket, nickNames, namesUsed );
-
-	handleRoomJoining( socket );
-
-	// ユーザの要求に応じて、使用されているルームのリストを提供
-	socket.on( 'rooms', function() {
-	  socket.emit( 'rooms', io.sockets.manager.rooms );
-	});
-
-	// ユーザが接続を断ったときのためにクリーンアップロジックを定義する
-	handleClientDisconnection( socket, nickNames, namesUsed );
-  });
-};
