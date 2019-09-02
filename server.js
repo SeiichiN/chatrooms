@@ -68,13 +68,6 @@ server.listen( 3000, function() {
 var chatServer = require('./lib/chat_server');
 chatServer.listen(server);
 
-var socketio = require('socket.io');
-var io;
-var guestNumber = 1;
-var nickNames = null;
-var namesUsed = [];
-var currentRoom = null;
-
 exports.listen = function( server ) {
   io = socketio.listen(server); // Socket.IOサーバを始動し、既存のHTTPサーバに相乗りさせる
   io.set('log level', 1);
