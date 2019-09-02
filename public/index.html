@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ja">
+
+  <head>
+	<title>チャット</title>
+	<link rel="stylesheet" href="/stylesheets/style.css"></link>
+  </head>
+
+  <body>
+	<div id="content">
+	  <div id="room"></div>
+	  <div id="room-list"></div>
+	  <div id="messages"></div>
+
+	  <form id="send-form">
+		<input id="send-message" />
+		<input id="send-button" type="submit" value="Send" />
+
+		<div id="help">
+		  チャットコマンド：
+		  <ul>
+			<li>ニックネームを変える： /nick [username]</li>
+			<li>room を参加 / 作成： /join [room name]</li>
+		  </ul>
+		</div>
+	  </form>
+	</div>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+	<script src="/javascripts/chat.js"></script>
+	<script src="/javascripts/chat.ui.js"></script>
+  </body>
+</html>
+
+
