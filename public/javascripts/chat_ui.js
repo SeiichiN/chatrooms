@@ -20,13 +20,15 @@ function processUserInput( chatApp, socket ) {
   var message = $('#send-message').val();
   var systemMessage;
 
+  console.log('message> ' + message);
+
   if (message.charAt(0) == '/') {
-	systemMessage = chatApp.process( message );
+	systemMessage = chatApp.processCommand( message );
 	if (systemMessage) {
 	  $('#messages').append( divSystemContentElement( systemMessage ));
 	}
   } else {
-	chatApp.sendMassage( $('#room').text(), message );
+	chatApp.sendMessage( $('#room').text(), message );
 
 	$('#messages').append( divEscapedContentElement( message ));
 	$('#messages').scrollTop( $('#messages').prop('scrollHeight'));
@@ -50,7 +52,7 @@ $(document).ready(function() {
 	} else {
 	  message = result.message;
 	}
-	$('#message').append(divSystemContentElement( message ));
+	$('#messages').append(divSystemContentElement( message ));
   });
 
   socket.on( 'joinResult', function (result) {
