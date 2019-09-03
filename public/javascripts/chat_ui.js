@@ -81,9 +81,9 @@ $(document).ready(function() {
   // 利用できるルームのリストは周期的に問い合わせる
   setInterval( function() {
 	socket.emit('rooms');
-  }. 1000);
+  }, 1000);
 
-  $('#send-message').forcus();
+  $('#send-message').focus();
 
   $('#send-form').submit( function() {
 	processUserInput( chatApp, socket );
