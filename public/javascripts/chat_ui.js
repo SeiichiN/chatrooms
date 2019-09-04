@@ -48,7 +48,8 @@ $(document).ready(function() {
 	var message;
 
 	if (result.success) {
-	  message = 'You are now known as ' + result.name + '.';
+	  // message = 'You are now known as ' + result.name + '.';
+	  message = 'あなたのユーザー名は ' + result.name + ' です。';
 	} else {
 	  message = result.message;
 	}
@@ -57,7 +58,7 @@ $(document).ready(function() {
 
   socket.on( 'joinResult', function (result) {
 	$('#room').text( result.room );
-	$('#messages').append( divSystemContentElement( 'Room changed.'));
+	$('#messages').append( divSystemContentElement( '部屋が変わりました。'));
   });
 
   socket.on( 'message', function (message) {
